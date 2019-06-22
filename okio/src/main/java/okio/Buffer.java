@@ -1057,4 +1057,24 @@ public final class Buffer implements BufferedSource, BufferedSink, Cloneable {
 
     return result;
   }
+
+  /** Returns an immutable copy of this buffer as a byte string. */
+  public final ByteString snapshot() {
+    if (size > Integer.MAX_VALUE) {
+      throw new IllegalArgumentException("size > Integer.MAX_VALUE: " + size);
+    }
+    return snapshot((int) size);
+  }
+
+  /**
+   * Returns an immutable copy of the first {@code byteCount} bytes of this buffer as a byte string.
+   */
+  public final ByteString snapshot(int byteCount) {
+    if (byteCount == 0) return ByteString.EMPTY;
+    try {
+      return clone().readByteString(byteCount);
+    } catch (EOFException e) {
+      throw new AssertionError(e);
+    }
+  }
 }
