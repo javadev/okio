@@ -29,7 +29,7 @@
     <animal.sniffer.version>1.10</animal.sniffer.version>
 
     <!-- Test Dependencies -->
-    <junit.version>4.11</junit.version>
+    <junit.version>4.13.1</junit.version>
   </properties>
 
   <scm>
